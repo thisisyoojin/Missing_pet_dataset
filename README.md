@@ -9,7 +9,7 @@ Currently, missing/found/stray dog data is scattered on multiple websites with d
 
 ```bash
 ├── barkley
-│   ├── data - where collected/processed data is saved
+│   ├── data
 │   ├── scraping
 │   │   ├── __init__.py
 │   │   ├── scraper.py
@@ -32,7 +32,7 @@ Currently, missing/found/stray dog data is scattered on multiple websites with d
 ```
 
 
-### Step
+### Steps
 
 1) Data Scraping
 - scraper.py : template for all scraper classes
@@ -54,9 +54,9 @@ Currently, missing/found/stray dog data is scattered on multiple websites with d
 ### Summary
 
 - Collected data:<br/>
-  8655 missing dog data\n<br/>
-  5271 vets\n<br/>
-  2959 districts data\n<br/>
+  8655 missing dog data<br/>
+  5271 vets<br/>
+  2959 districts data<br/>
 
 - The dataset is saved in a data warehouse
 - Multiple scraper is created by using class inheritance
