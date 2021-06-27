@@ -27,24 +27,27 @@ def get_distance(lat1, long1, lat2, long2):
 
 
 
-def calculate_distance_by_district(read_path, save_path):
+def calculate_distance_bewteen_district(read_path, save_path):
 
-    av = pd.read_csv(read_path)
-    av = av[['Postcode', 'Latitude', 'Longitude']]
-    av.set_index('Postcode', inplace=True)
+    df = pd.read_csv(read_path)
+    df = df[['Postcode', 'Latitude', 'Longitude']]
+    df.set_index('Postcode', inplace=True)
 
-    for idx in list(av.index):
+    for idx in df.index:
         print('starting:',idx)
         test = []
-        lat1, long1 = av.loc[[idx]]['Latitude'], av.loc[[idx]]['Longitude']
-        for jdx in list(av.index):
-            lat2, long2 = av.loc[[jdx]]['Latitude'], av.loc[[jdx]]['Longitude']
+        lat1, long1 = df.loc[[idx]]['Latitude'], df.loc[[idx]]['Longitude']
+        for jdx in df.index:
+            lat2, long2 = df.loc[[jdx]]['Latitude'], df.loc[[jdx]]['Longitude']
             test.append(get_distance(lat1, long1, lat2, long2))
-        av[idx] = test
-    av.to_csv(save_path)
+        df[idx] = test
+    df.to_csv(save_path)
+
 
 
 if __name__ == "__main__":
+
     data_path = './barkley/data'
     clean_by_postcode(f'{data_path}/Postcode_districts.csv', f'{data_path}/Available_districts.csv')
-    calculate_distance_by_district(f'{data_path}/Available_districts.csv', f'{data_path}/Distance_between_district.csv')
+    calculate_distance_bewteen_district(f'{data_path}/Available_districts.csv', f'{data_path}/Distance_between_district.csv')
+
