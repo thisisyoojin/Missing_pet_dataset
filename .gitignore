@@ -1,2 +1,5 @@
+resources/
 data/
+.vscode/
+env/
 *.log
