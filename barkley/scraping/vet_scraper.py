@@ -1,21 +1,15 @@
-from selenium import webdriver
-import json
+from scraper import UrlScraper
 
 
-class Vet_Scraper:
+class Vet_Scraper(UrlScraper):
 
-    def __init__(self):
-        self.ROOT_DOMAIN = "https://findavet.rcvs.org.uk/find-a-vet-practice/?filter-choice=location&filter-keyword=+&filter-searchtype=practice#primary-navigation"
-        self.driver = webdriver.Firefox()
-        self.vets = []
+    def __init__(self, ROOT_DOMAIN, next_xpath, data_path):
+        super().__init__(ROOT_DOMAIN, next_xpath=next_xpath)
+        self.data_path = data_path
+    
 
-    def get_page(self, domain):
-        self.driver.get(domain)
-        self.driver.implicitly_wait(5)
-
-
-    def get_item_info(self):
-
+    def get_items_in_page(self):
+        
         divs = self.driver.find_elements_by_xpath("//div[contains(@id, 'item')]")
         for d in divs:
             name, address, post_code, phone, email = None, None, None, None, None
@@ -26,52 +20,46 @@ class Vet_Scraper:
             try:
                 phone = d.find_element_by_xpath(".//span[contains(@class, 'tel')]").text.lstrip('phone2 ')
                 email = d.find_element_by_xpath(".//a[contains(@class, 'email')]").text.lstrip('envelope ')
+            
             except Exception as e:
                 print(e)
             
             finally:
-                self.vets.append({'name': name, 'address': address, 'post_code': post_code, 'phone': phone, 'email': email})
-
-
-
-    def get_next_page(self):
-        
-        paging = self.driver.find_element_by_xpath("//ol[@class='paging']/li[@class='next']")
-        
-        try:
-            next = paging.find_element_by_xpath(".//a").get_attribute('href')
-        except:
-            next = None
-        return next
+                self.write_to_json({'name': name, 'address': address, 'post_code': post_code, 'phone': phone, 'email': email}, self.data_path)
+                
 
     
-    def start_scraping(self):
+    def get_all_items(self):
         
-        self.get_page(self.ROOT_DOMAIN)
-        idx = 1
+        self.start()
+        idx, next = 0, True
+        current_page = self.ROOT_DOMAIN
         
-        while True:
+        while next:
+            self.get_page_by_url(current_page)
+            self.get_items_in_page()
             
-            print(f"Page {idx} extracting...")
-            self.get_item_info()
-            next = self.get_next_page()
-            
-            if next is None:
-                break
             idx += 1
+            print(f'page {idx} extracted')
 
-            self.get_page(next)
+            next = self.get_next(current_page)
+            print(next)
+            current_page = next
+            
 
-        return self.vets
+        print('Finished extracting data')
 
 
 
 if __name__ == "__main__":
-    
-    vet_scraper = Vet_Scraper()
-    vet_data = vet_scraper.start_scraping()
-    
-    with open(f'data/vets.txt', 'w') as f:
-        f.write(json.dumps(vet_data))
+
+    params ={
+        "ROOT_DOMAIN": "https://findavet.rcvs.org.uk/find-a-vet-practice/?filter-choice=location&filter-keyword=+&filter-searchtype=practice#primary-navigation",
+        "next_xpath": "//ol[@class='paging']/li[@class='next']/a",
+        "data_path": "./barkley/data/vet_data.json"
+    }
+
+    vet_scraper = Vet_Scraper(**params)
+    vet_data = vet_scraper.get_all_items()
 
 
