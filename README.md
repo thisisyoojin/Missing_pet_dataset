@@ -1,13 +1,31 @@
-Barkley dataset
+Barkle# bark-ley project
 
-.
+Bark-ley project is data engineering project on the purpose of creating centralised dataset for missing dog data.
+
+Based on the last seen place(where they are lost), I created 
+
+
+### Step
+
+1) Data Scraping
+
+2) Data Processing
+
+The data was downloadaed from here:
+- from collected district data, populations
+- from collected district data, calculate the distance between districts
+- Based on this distance table, 
+
+### Structure
+
+```bash
 ├── barkley
 │   ├── data
 │   ├── resources
 │   ├── scraping
 │   │   ├── __init__.py - download postcode file + extract distrct unique
 │   │   ├── scraper.py
-│   │   ├── warden_scraper.py
+│   │   ├── district_scraper.py
 │   │   ├── doglost_scraper.py
 │   │   └── vet_scraper.py
 │   ├── processing
@@ -21,6 +39,5 @@ Barkley dataset
 ├── .gitignore
 ├── README.md
 └── requirements.txt
+```
 
-
--pipenv install -r requirements.txt
