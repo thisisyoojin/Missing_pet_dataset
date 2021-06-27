@@ -1,8 +1,8 @@
 # bark-ley project
 
-According to the research of pet insurers MORE TH>N, five dogs go missing in the UK every single day. This means that 10% of dog owners in Britain have sadly experienced in their lives — an estimated 807,000 dogs. Bark-ley project is started from a small gesture to help this situation. 
+According to the research of pet insurers MORE TH>N, five dogs go missing in the UK every single day. This means that 10% of dog owners in Britain have sadly experienced their dog go missing at least once in their lives. Bark-ley is started as a small gesture to help this situation. 
 
-Currently, missing/found/stray dog data is scattered on multiple websites with different structure of data. Some websites have well-structured data while some relys on the vague descriptions. The data is also focused on the dog only, even though data nearby the last seen place might be cruicial to find the missing dog. The goal of this project to create a centralised dataset, which is consist of dog and location-based data.
+Currently, missing/found/stray dog data is scattered on multiple websites with different structures of data. Some websites have well-structured data while some rely on vague descriptions. The data is also focused on the dog only, even though data of the last seen place might be crucial to find the missing dog. The goal of this project is to create a centralised dataset, which is consisting of dog and location-based data.
 
 
 ### Directory Structure
@@ -36,31 +36,30 @@ Currently, missing/found/stray dog data is scattered on multiple websites with d
 
 1) Data Scraping
 - scraper.py : template for all scraper classes
-- district_scraper.py : what collects district information
-- doglost_scraper.py : what collects missing dog data
-- vet_scraper.py : what collects veterinary practice data
+- district_scraper.py : collects district information
+- doglost_scraper.py : collects missing dog data
+- vet_scraper.py : collects veterinary practice data
 
 
 2) Data Processing
 
-The data was downloadaed from here:
 - process_district_data.py : creates a matrix of distances between districts 
 - process_vet_data.py : creates dictionary to map vets in a certain district
 - doglost_data.py : cleans the missing dog dataset and adds extracted information
 
 
 3) Data Insertion in Cloud(AWS RDS)
-- insertion.py : inserts dataset into data warehouse
+- insertion.py : inserts dataset into a data warehouse
 
 ### Summary
 
-- Collected data:
-  8655 missing dog data
-  5271 vets
-  2959 districts data
+- Collected data:\n
+  8655 missing dog data\n
+  5271 vets\n
+  2959 districts data\n
 
-- The dataset is saved in data warehouse
+- The dataset is saved in a data warehouse
 - Multiple scraper is created by using class inheritance
-- A multi-threading is used for a scraper
+- Multi-threading is used for a scraper
 
 
