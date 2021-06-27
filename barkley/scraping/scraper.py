@@ -19,7 +19,7 @@ class Scraper:
         self.driver.implicitly_wait(4)
 
 
-    def read_urls(self, fpath):
+    def read_text(self, fpath):
         if os.path.isfile(fpath):
             with open(fpath, 'r') as f:
                 urls = f.readlines()
