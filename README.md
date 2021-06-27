@@ -13,7 +13,7 @@ Based on the last seen place(where they are lost), I created
 │   ├── scraping
 │   │   ├── __init__.py
 │   │   ├── scraper.py - template for all scraper classes
-│   │   ├── district_scraper.py - what collects district information(latitude, longitude, town/area, population, households)
+│   │   ├── district_scraper.py - what collects district information
 │   │   ├── doglost_scraper.py - what collects missing dog data
 │   │   └── vet_scraper.py - what collects veterinary practice data
 │   │
