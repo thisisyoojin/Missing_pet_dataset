@@ -53,10 +53,10 @@ Currently, missing/found/stray dog data is scattered on multiple websites with d
 
 ### Summary
 
-- Collected data:\n
-  8655 missing dog data\n
-  5271 vets\n
-  2959 districts data\n
+- Collected data:<br/>
+  8655 missing dog data\n<br/>
+  5271 vets\n<br/>
+  2959 districts data\n<br/>
 
 - The dataset is saved in a data warehouse
 - Multiple scraper is created by using class inheritance
