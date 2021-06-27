@@ -47,7 +47,11 @@ def calculate_distance_bewteen_district(read_path, save_path):
 
 if __name__ == "__main__":
 
-    data_path = './barkley/data'
-    clean_by_postcode(f'{data_path}/Postcode_districts.csv', f'{data_path}/Available_districts.csv')
-    calculate_distance_bewteen_district(f'{data_path}/Available_districts.csv', f'{data_path}/Distance_between_district.csv')
+    params = {
+        "read_path":"./barkley/data/Postcode_districts.csv",
+        "save_path":"./barkley/data/Distance_between_district.csv"
+    }
+
+    clean_by_postcode(**params)
+    calculate_distance_bewteen_district(**params)
 
