@@ -1,4 +1,4 @@
-# Lost Pets Alarm
+# Lost Pets Alarms
 
 According to the research of pet insurers, five dogs go missing in the UK every single day. This means that 10% of dog owners in Britain have sadly experienced their dog go missing at least once in their lives. Bark-ley is started as a small gesture to help this situation. 
 
