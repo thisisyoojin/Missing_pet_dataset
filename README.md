@@ -37,8 +37,8 @@ Currently, missing/found/stray dog data is scattered on multiple websites with d
 
 1) Data Scraping
 - scraper.py : template for all scraper classes
+- doglost_scraper.py : collects missing dog data on daily basis
 - district_scraper.py : collects district information
-- doglost_scraper.py : collects missing dog data
 - vet_scraper.py : collects veterinary practice data
 
 
